@@ -8,8 +8,6 @@ import eu.timepit.refined.numeric.Interval
 import eu.timepit.refined.string.MatchesRegex
 import pwr.v2.SpBus._
 
-final case class Nel()
-
 case class SpBus(
   id: Id,
   line: Line,
