@@ -8,18 +8,25 @@ import pwr.v2.SpBus._
 
 object App3 {
   def main(args: Array[String]): Unit = {
-    buildBus(id = "0", line = "SV917", company = "", route = List("", "rua Gomes de Carvalho")) match {
+    buildBus(id = "0", line = "SV917", company = "", route = List("", "av", "rua Gomes de Carvalho")) match {
       case Valid(bus) => println(bus)
       case Invalid(errors) => errors.toList.foreach(println)
     }
+
+    /*buildBus(id = "64570", line = "607G-10", company = "Unisul", route = List("rua Gomes de Carvalho", "Funchal", "Berrini")) match {
+      case Valid(bus) => println(bus)
+      case Invalid(errors) => errors.toList.foreach(println)
+    }*/
   }
 
   private def buildBus(id: String, line: String, company: String, route: List[String]): ValidatedNel[String, SpBus] = {
+    //Integrating with Cats to accumulate all errors
+    //using the ValidatedNel Applicative!
     (
-      refineV[Id](id.toInt).toValidatedNel,
-      refineV[Line](line).toValidatedNel,
-      refineV[Company](company).toValidatedNel,
-      refineV[Route](route).toValidatedNel //workaround: validate, discard the value =(
+      refineV[IdRange](id.toInt).toValidatedNel,
+      refineV[LineRegex](line).toValidatedNel,
+      refineV[MinSizeString](company).toValidatedNel,
+      refineV[NonEmptyStringList](route).toValidatedNel //workaround: validate, discard refined value, use original =(
     ) mapN { (id, line, company, _route) =>
       SpBus(id, line, company, route)
     }

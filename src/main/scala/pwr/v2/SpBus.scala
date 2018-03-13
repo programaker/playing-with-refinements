@@ -8,16 +8,16 @@ import eu.timepit.refined.numeric.Interval
 import eu.timepit.refined.string.MatchesRegex
 import pwr.v2.SpBus._
 
+object SpBus {
+  type IdRange = Interval.Closed[W.`10000`.T, W.`89999`.T]
+  type LineRegex = MatchesRegex[W.`"""\\d{3}[0-9A-Z]-\\d{2}"""`.T]
+  type MinSizeString = MinSize[W.`3`.T]
+  type NonEmptyStringList = NonEmpty And Forall[MinSizeString]
+}
+
 case class SpBus(
-  id: Int Refined Id,
-  line: String Refined Line,
-  company: String Refined Company,
+  id: Int Refined IdRange,
+  line: String Refined LineRegex,
+  company: String Refined MinSizeString,
   route: List[String] //Won't work in compile-type for Lists because they aren't "literal"
 )
-
-object SpBus {
-  type Id = Interval.Closed[W.`10000`.T, W.`89999`.T]
-  type Line = MatchesRegex[W.`"""\\d{3}[0-9A-Z]-\\d{2}"""`.T]
-  type Company = NonEmpty And MinSize[W.`3`.T]
-  type Route = NonEmpty And Forall[NonEmpty]
-}
