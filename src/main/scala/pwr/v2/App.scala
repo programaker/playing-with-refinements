@@ -1,7 +1,5 @@
 package pwr.v2
 
-import eu.timepit.refined.api.Refined
-
 object App {
   import eu.timepit.refined.auto._
 
