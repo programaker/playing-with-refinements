@@ -7,7 +7,8 @@ object App {
     val bus = SpBus(
       id = 39869,
       line = "702P-10",
-      company = "Consorcio Plus"
+      company = "Consorcio Plus",
+      route = List.empty //oh no!
     )
 
     println(bus)
