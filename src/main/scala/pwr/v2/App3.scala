@@ -19,8 +19,8 @@ object App3 {
       refineV[Id](id.toInt).toValidatedNel,
       refineV[Line](line).toValidatedNel,
       refineV[Company](company).toValidatedNel
-    ) mapN {
-      (id, line, company) => SpBus(id, line, company)
+    ) mapN { (id, line, company) =>
+      SpBus(id, line, company)
     }
   }
 }
