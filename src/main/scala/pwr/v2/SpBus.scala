@@ -13,7 +13,7 @@ object SpBus {
   type LineRegex = MatchesRegex[W.`"""^[1-8][0-9L][0-9][0-9A-Z]-\\d{2}$"""`.T]
   type NonBlankString = NonEmpty And Not[MatchesRegex[W.`"""^\\s+$"""`.T]]
   type MinSizeString = MinSize[W.`3`.T] And NonBlankString
-  type NonEmptyStringList = NonEmpty And Forall[MinSizeString]
+  type MinSizeStringList = NonEmpty And Forall[MinSizeString]
 }
 
 case class SpBus(

@@ -18,7 +18,7 @@ object App2 {
       id <- refineV[IdRange](id.toInt)
       line <- refineV[LineRegex](line)
       company <- refineV[MinSizeString](company)
-      _ <- refineV[NonEmptyStringList](route) //workaround: validate, discard refined value, use original =(
+      _ <- refineV[MinSizeStringList](route) //workaround: validate, discard refined value, use original =(
     } yield SpBus(id, line, company, route)
   }
 }

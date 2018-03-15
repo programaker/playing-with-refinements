@@ -13,7 +13,7 @@ object App3 {
       case Invalid(errors) => errors.toList.foreach(println)
     }
 
-    /*buildBus(id = "64570", line = "607G-10", company = "Unisul", route = List("rua Gomes de Carvalho", "Funchal", "Berrini")) match {
+    /*buildBus(id = "64570", line = "607G-10", company = "Mobibrasil", route = List("rua Gomes de Carvalho", "Funchal", "Berrini")) match {
       case Valid(bus) => println(bus)
       case Invalid(errors) => errors.toList.foreach(println)
     }*/
@@ -26,7 +26,7 @@ object App3 {
       refineV[IdRange](id.toInt).toValidatedNel,
       refineV[LineRegex](line).toValidatedNel,
       refineV[MinSizeString](company).toValidatedNel,
-      refineV[NonEmptyStringList](route).toValidatedNel //workaround: validate, discard refined value, use original =(
+      refineV[MinSizeStringList](route).toValidatedNel //workaround: validate, discard refined value, use original =(
     ) mapN { (id, line, company, _route) =>
       SpBus(id, line, company, route)
     }

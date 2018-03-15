@@ -1,6 +1,7 @@
 package pwr.v2
 
 object App {
+  //Do not forget this import! 
   import eu.timepit.refined.auto._
 
   def main(args: Array[String]): Unit = {
