@@ -11,8 +11,7 @@ import pwr.v2.SpBus._
 object SpBus {
   type IdRange = Interval.Closed[W.`10000`.T, W.`89999`.T]
   type LineRegex = MatchesRegex[W.`"""^[1-8][0-9L][0-9][0-9A-Z]-\\d{2}$"""`.T]
-  type NonBlankString = NonEmpty And Not[MatchesRegex[W.`"""^\\s+$"""`.T]]
-  type MinSizeString = MinSize[W.`3`.T] And NonBlankString
+  type MinSizeString = MinSize[W.`3`.T] And Not[MatchesRegex[W.`"""^\\s+$"""`.T]]
   type MinSizeStringList = NonEmpty And Forall[MinSizeString]
 }
 

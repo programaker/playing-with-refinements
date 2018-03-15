@@ -8,7 +8,7 @@ import pwr.v2.SpBus._
 
 object App3 {
   def main(args: Array[String]): Unit = {
-    buildBus(id = "0", line = "SV917", company = "", route = List("", "av", "rua Gomes de Carvalho")) match {
+    buildBus(id = "0", line = "SV917", company = "", route = List("", "av", " ", "rua Gomes de Carvalho")) match {
       case Valid(bus) => println(bus)
       case Invalid(errors) => errors.toList.foreach(println)
     }
