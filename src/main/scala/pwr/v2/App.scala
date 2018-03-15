@@ -6,9 +6,9 @@ object App {
   def main(args: Array[String]): Unit = {
     //Now incorrect values won't compile, except...
     val bus = SpBus(
-      id = 39869,
-      line = "702P-10",
-      company = "Consorcio Plus",
+      id = 79869,
+      line = "675N-10",
+      company = "Gatusa",
       route = List.empty //...[error] compile-time refinement only works with literals
     )
 
