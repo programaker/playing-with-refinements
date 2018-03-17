@@ -3,7 +3,7 @@ package pwr.v2
 import eu.timepit.refined.W
 import eu.timepit.refined.api.Refined
 import eu.timepit.refined.boolean.{And, Not}
-import eu.timepit.refined.collection.{Forall, MinSize, NonEmpty}
+import eu.timepit.refined.collection.MinSize
 import eu.timepit.refined.numeric.Interval
 import eu.timepit.refined.string.MatchesRegex
 import pwr.v2.SpBus._
