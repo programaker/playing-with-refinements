@@ -9,8 +9,7 @@ object App {
     val bus = SpBus(
       id = 79869,
       line = "675N-10",
-      company = "Gatusa",
-      route = List.empty //...[error] compile-time refinement only works with literals
+      company = "Gatusa"
     )
 
     println(bus)

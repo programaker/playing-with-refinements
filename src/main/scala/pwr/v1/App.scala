@@ -6,8 +6,7 @@ object App {
     val bus = SpBus(
       id = 0,
       line = "SV917",
-      company = "",
-      route = List.empty
+      company = ""
     )
 
     println(bus)

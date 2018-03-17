@@ -8,27 +8,26 @@ import pwr.v2.SpBus._
 
 object App3 {
   def main(args: Array[String]): Unit = {
-    buildBus(id = "0", line = "SV917", company = "", route = List("", "av", " ", "rua Gomes de Carvalho")) match {
+    buildBus(id = "0", line = "SV917", company = "") match {
       case Valid(bus) => println(bus)
       case Invalid(errors) => errors.toList.foreach(println)
     }
 
-    /*buildBus(id = "64570", line = "607G-10", company = "Mobibrasil", route = List("rua Gomes de Carvalho", "Funchal", "Berrini")) match {
+    /*buildBus(id = "64570", line = "607G-10", company = "Mobibrasil") match {
       case Valid(bus) => println(bus)
       case Invalid(errors) => errors.toList.foreach(println)
     }*/
   }
 
-  private def buildBus(id: String, line: String, company: String, route: List[String]): ValidatedNel[String, SpBus] = {
+  private def buildBus(id: String, line: String, company: String): ValidatedNel[String, SpBus] = {
     //Integrating with Cats to accumulate all errors
     //using the ValidatedNel Applicative!
     (
       refineV[IdRange](id.toInt).toValidatedNel,
       refineV[LineRegex](line).toValidatedNel,
-      refineV[MinSizeString](company).toValidatedNel,
-      refineV[MinSizeStringList](route).toValidatedNel //workaround: validate, discard refined value, use original =(
-    ) mapN { (id, line, company, _route) =>
-      SpBus(id, line, company, route)
+      refineV[MinSizeString](company).toValidatedNel
+    ) mapN { (id, line, company) =>
+      SpBus(id, line, company)
     }
   }
 }
